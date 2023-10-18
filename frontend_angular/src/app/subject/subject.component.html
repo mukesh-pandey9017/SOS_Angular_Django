@@ -1,0 +1,63 @@
+<body>
+    <div class="container">
+        <h2>Subject</h2>
+        <div class="form-container">
+            
+            <div *ngIf="success; then SUCCESS_MSG else ERROR_MSG" ></div>
+            <ng-template #SUCCESS_MSG >
+                <div [class.fade-out]="!isElementVisible">
+                    <h3 id="msg_format" style="color:rgb(29, 223, 29);">{{ message }}</h3>
+                </div>
+            </ng-template>
+            <ng-template #ERROR_MSG>
+                <div [class.fade-out]="!isElementVisible">
+                    <h3 id="msg_format" style="color:red">{{ message }}</h3>
+                </div>
+            </ng-template>
+            
+            <form>
+                    
+                <div class="input-name">
+                    <i class="fas fa-book-open icon"></i>
+                    <input (focus)="fadeOutElement()" [(ngModel)]="form.subjectName" type="text" placeholder="Enter Subject Name" name="subjectName"
+                        class="text-name">
+                </div>
+
+                <div class="input-name">
+                    <span style="color: red;margin-left:1px">{{inputError.subjectName}}</span>
+                </div>
+
+                <div class="input-name">
+                    <i class="fa fa-paragraph icon"></i>
+                    <input [(ngModel)]="form.subjectDescription" type="text" placeholder="Subject Description" name="subjectDescription"
+                         class="text-name">
+                </div>
+
+                <div class="input-name">
+                    <span style="color: red;margin-left:1px">{{inputError.subjectDescription}}</span>
+                </div>
+
+                <div class="input-name">
+                    <label for="course_ID">Course Name<span style="color: red;margin-left:2px">*</span></label>
+                    <select [(ngModel)]="form.course_ID" class="role" name="course_ID">
+                        <option *ngFor="let course of preloadData" [ngValue]="course.id">{{ course.courseName }}</option>
+                    </select>   
+                </div>
+
+                <div><span style="color:red;margin-left:25px">{{inputError.course_ID}}</span></div>
+
+                
+                <div class="input-button">
+                    <div class="row">
+                        <button (click)="save()" class="button" style="margin-left:127px ;">Save</button>
+                        <button (click)="reset()" class="button">Reset</button>
+                    </div>
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</body>

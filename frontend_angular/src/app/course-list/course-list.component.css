@@ -1,0 +1,28 @@
+.input-name
+{
+    width: 90%;
+    position: relative;
+    margin: 20px auto;
+    text-align: center;
+}
+
+.name
+{
+    width: 25%;
+    padding: 8px 4px 8px 20px;
+    margin: 10px;
+} 
+.input-name span
+{
+    margin-left: 35px;
+} 
+.fade-out {
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+  }
+#msg_format{
+    text-align:center;
+    font-size:27px;
+    font-family:serif;
+    padding-bottom: 10px;
+}

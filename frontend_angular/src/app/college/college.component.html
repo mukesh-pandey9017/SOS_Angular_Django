@@ -1,0 +1,88 @@
+<body>
+    <div class="container">
+        <h2>College</h2>
+        <div class="form-container">
+            
+            <div *ngIf="success; then SUCCESS_MSG else ERROR_MSG" ></div>
+            <ng-template #SUCCESS_MSG >
+                <div [class.fade-out]="!isElementVisible">
+                    <h3 id="msg_format" style="color:rgb(29, 223, 29);">{{ message }}</h3>
+                </div>
+            </ng-template>
+            <ng-template #ERROR_MSG>
+                <div [class.fade-out]="!isElementVisible">
+                    <h3 id="msg_format" style="color:red">{{ message }}</h3>
+                </div>
+            </ng-template>
+            
+            <form>
+                
+                <div class="input-name">
+                    <i class="fa fa-university icon"></i>
+                    <input (focus)="fadeOutElement()" [(ngModel)]="form.collegeName" type="text" placeholder="Enter your College Name" name="collegeName"  class="text-name">
+                </div>
+
+                <div class="row">
+                    <div >
+                    <span style="color: red;margin-left:25px;">{{inputError.collegeName}}</span>
+                    </div>
+                </div>
+
+                <div class="input-name">
+                    <i class="fa fa-landmark icon"></i>
+                    <input [(ngModel)]="form.collegeCity" type="text" placeholder="Enter your College City" name="collegCity"  class="text-name">
+                </div>
+
+                <div class="row">
+                    <div >
+                    <span style="color: red;margin-left:25px;">{{inputError.collegeCity}}</span>
+                    </div>
+                </div>
+
+                <div class="input-name">
+                    <i class="fa fa-address-book icon"></i>
+                    <input [(ngModel)]="form.collegeAddress" type="text" placeholder="Enter your College Address" name="collegeAddress"  class="text-name">
+                </div>
+
+                <div class="row">
+                    <div >
+                    <span style="color: red;margin-left:25px;">{{inputError.collegeAddress}}</span>
+                    </div>
+                </div>
+
+                <div class="input-name">
+                    <i class="fa fa-map-signs icon"></i>
+                    <input [(ngModel)]="form.collegeState" type="text" placeholder="Enter your College State" name="collegeState"  class="text-name">
+                </div>
+
+                <div class="row">
+                    <div >
+                    <span style="color: red;margin-left:25px;">{{inputError.collegeState}}</span>
+                    </div>
+                </div>
+
+                <div class="input-name">
+                    <i class="fa fa-mobile icon"></i>
+                    <input [(ngModel)]="form.collegePhoneNumber" type="text" placeholder="Enter your College Phone Number" name="collegePhoneNumber"  class="text-name">
+                </div>
+
+                <div class="row">
+                    <div >
+                    <span style="color: red;margin-left:25px;">{{inputError.collegePhoneNumber}}</span>
+                    </div>
+                </div>
+                
+                <div class="input-button">
+                    <div class="row">
+                        <button (click)="save()" class="button" style="margin-left:127px ;">Save</button>
+                        <button (click)="reset()" class="button">Reset</button>
+                    </div>
+                </div>
+                
+            </form>
+
+        </div>
+
+    </div>
+
+</body>

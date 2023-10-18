@@ -1,0 +1,86 @@
+<body>
+    <div class="container">
+        <h2>Student</h2>
+        <div class="form-container">
+            
+            <div *ngIf="success; then SUCCESS_MSG else ERROR_MSG" ></div>
+            <ng-template #SUCCESS_MSG >
+                <div [class.fade-out]="!isElementVisible">
+                    <h3 id="msg_format" style="color:rgb(29, 223, 29);">{{ message }}</h3>
+                </div>
+            </ng-template>
+            <ng-template #ERROR_MSG>
+                <div [class.fade-out]="!isElementVisible">
+                    <h3 id="msg_format" style="color:red">{{ message }}</h3>
+                </div>
+            </ng-template>
+            
+            <form>
+                
+                <div class="input-name">
+                    <i class="fa fa-user icon"></i>
+                    <input [(ngModel)]="form.firstName" type="text" placeholder="Enter First Name" name="firstName"class="name">
+                    <span>
+                        <i class="fa fa-user icon"></i>
+                    <input [(ngModel)]="form.lastName" type="text" placeholder="Enter Last Name" name="lastName" class="name">
+                    </span>
+    
+                </div>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <span style="color: red;margin-left:25px;">{{ inputError.firstName }}</span>   
+                    </div>
+                    <div class="col-lg-6">
+                        <span style="color: red;margin-left:12px;">{{ inputError.lastName }}</span>
+                    </div>
+                </div>
+    
+                <div class="input-name">
+                    <label for="collegeName">College Name<span style="color: red;margin-left:2px">*</span></label>
+                    <select [(ngModel)]="form.college_ID" class="role" name="college_ID">
+                        <option *ngFor="let college of preloadData" [ngValue]="college.id">{{ college.collegeName }}</option>
+                    </select>
+                </div>
+
+                <div class="row">
+                    <div><span style="color: red;margin-left:25px;">{{inputError.college_ID}}</span></div>
+                </div>
+                
+                <div class="input-name">
+                    <i class="fas fa-calendar icon"></i>
+                    <input [(ngModel)]="form.dob" type="date" placeholder="Enter your dob" name="dob" class="text-name">
+                </div>
+                <div class="input-name">
+                    <span style="color: red;margin-left:3px">{{inputError.dob}}</span>
+                </div>
+    
+                <div class="input-name">
+                    <i class="fa fa-mobile icon"></i>
+                    <input [(ngModel)]="form.mobileNumber" type="text" placeholder="Enter your Mobile No." name="mobileNumber" class="text-name">
+                </div>
+                <div class="input-name">
+                    <span style="color: red;margin-left:3px">{{inputError.mobileNumber}}</span>
+                </div>
+    
+                <div class="input-name">
+                    <i class="fa fa-envelope icon"></i>
+                    <input (focus)="fadeOutElement()" [(ngModel)]="form.email" type="email" placeholder="Enter your Email" name="email" class="text-name">
+                </div>
+                <div class="input-name">
+                    <span style="color: red;margin-left:3px">{{inputError.email}}</span>
+                </div>    
+                
+                <div class="input-button">
+                    <div class="row">
+                        <button (click)="save()" class="button" style="margin-left:127px ;">Save</button>
+                        <button (click)="reset()" class="button">Reset</button>
+                    </div>
+                </div>
+                
+            </form>
+
+        </div>
+
+    </div>
+
+</body>

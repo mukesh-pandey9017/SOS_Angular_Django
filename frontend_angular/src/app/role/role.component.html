@@ -1,0 +1,52 @@
+<body>
+    <div class="container">
+        <h2>Role Information</h2>
+        <div class="form-container">
+            
+            <div *ngIf="success; then SUCCESS_MSG else ERROR_MSG" ></div>
+            <ng-template #SUCCESS_MSG >
+                <div [class.fade-out]="!isElementVisible">
+                    <h3 id="msg_format" style="color:rgb(29, 223, 29);">{{ message }}</h3>
+                </div>
+            </ng-template>
+            <ng-template #ERROR_MSG>
+                <div [class.fade-out]="!isElementVisible">
+                    <h3 id="msg_format" style="color:red">{{ message }}</h3>
+                </div>
+            </ng-template>
+            
+            <form>
+                
+                <div class="input-name">
+                    <i class="fas fa-user icon"></i>
+                    <input (focus)="fadeOutElement()" [(ngModel)]="form.name" type="text" placeholder="Enter Role Name" name="name"  class="text-name">
+                </div>
+
+                <div class="input-name">
+                    <span style="color: red;margin-left:3px">{{ inputError.name}}</span>
+                </div>
+
+                <div class="input-name">
+                    <i class="fa fa-paragraph icon"></i>
+                    <input [(ngModel)]="form.description" type="text" placeholder="Enter Description" name="description" class="text-name">
+                </div>
+
+                <div class="input-name">
+                    <span style="color: red;margin-left:3px">{{ inputError.description}}</span>
+                </div>
+                
+                
+                <div class="input-button">
+                    <div class="row">
+                        <button (click)="save()" class="button" style="margin-left:127px ;">Save</button>
+                        <button (click)="reset()" class="button">Reset</button>
+                    </div>
+                </div>
+                
+            </form>
+
+        </div>
+
+    </div>
+
+</body>

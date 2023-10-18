@@ -1,0 +1,87 @@
+<body>
+    <div class="container">
+        <h2>TimeTable</h2>
+        <div class="form-container">
+            
+            <div *ngIf="success; then SUCCESS_MSG else ERROR_MSG" ></div>
+            <ng-template #SUCCESS_MSG >
+                <div [class.fade-out]="!isElementVisible">
+                    <h3 id="msg_format" style="color:rgb(29, 223, 29);">{{ message }}</h3>
+                </div>
+            </ng-template>
+            <ng-template #ERROR_MSG>
+                <div [class.fade-out]="!isElementVisible">
+                    <h3 id="msg_format" style="color:red">{{ message }}</h3>
+                </div>
+            </ng-template>
+            
+            <form>
+
+                <div class="input-name">
+                    <i class="fas fa-clock icon"></i>
+                        <select [(ngModel)]="form.examTime" class="role" name="examTime" style="text-align: center;">
+                            <option *ngFor="let timeSlot of slot_timings" [ngValue]="timeSlot">{{ timeSlot }}</option>
+                        </select>  
+                </div>
+
+                <div class="row">
+                    <div><span style="color: red;margin-left:25px;">{{inputError.examTime}}</span></div>
+                </div>
+
+                <div class="input-name">
+                    <i class="fa fa-calendar icon"></i>
+                    <input [(ngModel)]="form.examDate" type="date" name="examDate"
+                      class="text-name" style="text-align: center;">
+                </div>
+
+                <div class="row">
+                    <div><span style="color: red;margin-left:25px;">{{inputError.examDate}}</span></div>
+                </div>
+                
+                <div class="input-name">
+                    <label for="course_ID">Course Name<span style="color: red;margin-left:2px">*</span></label>
+                    <select [(ngModel)]="form.course_ID" class="role" name="course_ID">
+                        <option *ngFor="let course of preloadCourse" [ngValue]="course.id">{{ course.courseName }}</option>
+                    </select>  
+                </div>
+
+                <div class="row">
+                    <div><span style="color: red;margin-left:25px;">{{inputError.course_ID}}</span></div>
+                </div>
+
+                <div class="input-name">
+                    <label for="subject_ID">Subject Name<span style="color: red;margin-left:2px">*</span></label>
+                    <select [(ngModel)]="form.subject_ID" class="role" name="subject_ID">
+                        <option *ngFor="let subject of preloadSubject" [ngValue]="subject.id">{{ subject.subjectName }}</option>
+                    </select>   
+                </div>
+
+                <div class="row">
+                    <div><span style="color: red;margin-left:25px;">{{inputError.subject_ID}}</span></div>
+                </div>
+
+                <div class="input-name">
+                    <label for="semester">Semester<span style="color: red;margin-left:2px">*</span></label>
+                        <select [(ngModel)]="form.semester" class="role" name="semester" style="text-align: center;">
+                            <option *ngFor="let semester of semesters" [ngValue]="semester">{{ semester }}</option>
+                        </select>  
+                </div>
+
+                <div class="row">
+                    <div><span style="color: red;margin-left:25px;">{{inputError.semester}}</span></div>
+                </div>
+                
+                <div class="input-button">
+                    <div class="row">
+                        <button (click)="save()" class="button" style="margin-left:127px ;">Save</button>
+                        <button (click)="reset()" class="button">Reset</button>
+                    </div>
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</body>

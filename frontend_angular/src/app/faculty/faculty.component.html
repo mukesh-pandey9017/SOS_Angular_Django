@@ -1,0 +1,134 @@
+<body>
+    <div class="container">
+        <h2>Faculty Information</h2>    
+        <div class="form-container">
+            
+            <div *ngIf="success; then SUCCESS_MSG else ERROR_MSG" ></div>
+            <ng-template #SUCCESS_MSG >
+                <div [class.fade-out]="!isElementVisible">
+                    <h3 id="msg_format" style="color:rgb(29, 223, 29);">{{ message }}</h3>
+                </div>
+            </ng-template>
+            <ng-template #ERROR_MSG>
+                <div [class.fade-out]="!isElementVisible">
+                    <h3 id="msg_format" style="color:red">{{ message }}</h3>
+                </div>
+            </ng-template>
+            
+            <form>
+                    <div class="input-name">
+                        <i class="fa fa-user icon" ></i>
+                        <input [(ngModel)]="form.firstName" type="text" placeholder="Enter First Name" name="firstName"  class="name">
+                        
+                        <span>
+                            <i class="fa fa-user icon"></i>
+                            <input [(ngModel)]="form.lastName" type="text" placeholder="Enter Last Name" name="lastName"  class="name">
+                        </span>
+                    </div>
+
+                <div class="row">
+                    <div class="col-lg-6 ">
+                        <span style="color: red;margin-left:25px;">{{ inputError.firstName }}</span>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <span style="color: red;margin-left:12px;">{{ inputError.lastName }}</span>
+                    </div>
+                </div>
+
+                <div class="input-name">
+                    <i class="fa fa-envelope icon"></i>
+                    <input (focus)="fadeOutElement()" [(ngModel)]="form.email" type="email" placeholder="Enter your Email" name="email"  class="text-name">
+                </div>
+
+                <div class="row">
+                    <div >
+                    <span style="color: red;margin-left:25px;">{{inputError.email}}</span>
+                    </div>
+                </div>
+
+
+                <div class="input-name">
+                    <i class="fa fa-lock icon"></i>
+                    <input [(ngModel)]="form.password" type="password" placeholder="Enter Your Password" name="password" class="name">
+                    <span>
+                        <i class="fa fa-address-book icon"></i>
+                        <input [(ngModel)]="form.address" type="text" placeholder="Enter your address" name="address" class="name">
+                    </span>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-6">
+                        <span style="color: red;margin-left:25px;">{{ inputError.password }}</span>
+                    </div>
+                    <div class="col-lg-6">
+                        <span style="color: red;margin-left:12px;">{{ inputError.address }}</span>
+                    </div>
+                </div>
+
+                <div class="input-name">
+                    <input selected [(ngModel)]="form.gender" type="radio"  name="gender" value="Male" class="radio-button" checked>
+                    <label style="margin-right:27px; color: black;">Male</label>
+
+                    <input [(ngModel)]="form.gender" type="radio"  name="gender" value="Female" class="radio-button">
+                    <label style="margin-right: 42px; color: black;">Female</label>
+
+                    <span>
+                        <i class="fa fa-calendar icon"></i>
+                        <input [(ngModel)]="form.dob" type="date" placeholder="dd-mm-yyyy" name="dob" value="{{form.dob}}" class="name">
+                    </span>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-lg-6">
+                        <span style="color: red;margin-left:25px;">{{ inputError.gender }}</span>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <span style="color: red;margin-left:12px;">{{ inputError.dob }}</span>
+                    </div>
+                </div>
+
+                <div class="input-name">
+                    <label for="college_ID">College Name<span style="color: red;margin-left:2px">*</span></label>
+                    <select [(ngModel)]="form.college_ID" class="role" name="college_ID">
+                        <option *ngFor="let college of preloadCollege" [ngValue]="college.id">{{ college.collegeName }}</option>
+                    </select>   
+                </div>
+
+                <div><span style="color:red;margin-left:25px">{{ inputError.college_ID }}</span></div>
+
+                <div class="input-name">
+                    <label for="subject_ID">Subject Name<span style="color: red;margin-left:2px">*</span></label>
+                    <select [(ngModel)]="form.subject_ID" class="role" name="subject_ID">
+                        <option *ngFor="let subject of preloadSubject" [ngValue]="subject.id">{{ subject.subjectName }}</option>
+                    </select>   
+                </div>
+
+                <div><span style="color:red;margin-left:25px">{{ inputError.subject_ID }}</span></div>
+
+                
+                <div class="input-name">
+                    <label for="course_ID">Course Name<span style="color: red;margin-left:2px">*</span></label>
+                    <select [(ngModel)]="form.course_ID" class="role" name="course_ID">
+                        <option *ngFor="let course of preloadCourse" [ngValue]="course.id">{{ course.courseName }}</option>
+                    </select>   
+                </div>
+                <div><span style="color:red;margin-left:25px">{{ inputError.course_ID }}</span></div>
+
+                
+                <div class="input-button">
+                    <div class="row">
+                        <button (click)="save()" class="button" style="margin-left:127px ;">Save</button>
+                        <button (click)="reset()" class="button">Reset</button>
+                    </div>
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</body>

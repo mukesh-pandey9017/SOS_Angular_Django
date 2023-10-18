@@ -1,0 +1,179 @@
+<nav  class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+    <div *ngIf="roleName =='';then loginlink else welcomelink"></div>
+    <ng-template #loginlink><a class="navbar-brand" href="/login">
+        <img src="assets/img.png" width="120" alt="no image" height="40"></a></ng-template>
+    <ng-template #welcomelink><a class="navbar-brand" href="/welcome">
+        <img src="assets/img.png" width="120" alt="no image" height="40"></a></ng-template>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      
+        <ng-template [ngIf]="isLogin()">
+            <ul class="navbar-nav mr-auto">
+
+            <ng-template [ngIf]="roleName == 'Admin'">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" [routerLink]="['/user']" id="navbardrop" data-toggle="dropdown">
+                        <i class="fa fa-user icons"></i>
+                        User
+                    </a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" [routerLink]="['/user']"><i class="fa fa-user"></i> User</a>
+                        <a class="dropdown-item" [routerLink]="['/userlist']"><i class="fas fa-list"></i> UserList</a>
+                    </div>
+                </li>
+
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" [routerLink]="['/college']" id="navbardrop" data-toggle="dropdown">
+                        <i class="fas fa-graduation-cap icons"></i>
+                        College
+                    </a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" [routerLink]="['/college']"><i class="fas fa-graduation-cap" ></i> College</a>
+                        <a class="dropdown-item" [routerLink]="['/collegelist']"><i class="fas fa-list"></i> CollegeList</a>
+                    </div>
+                </li>
+
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" [routerLink]="['/course']" id="navbardrop" data-toggle="dropdown">
+                        <i class="fab fa-discourse icons"></i>
+                        Course
+                    </a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" [routerLink]="['/course']"><i class="fab fa-discourse"></i> Course</a>
+                        <a class="dropdown-item" [routerLink]="['/courselist']"><i class="fas fa-list"></i> CourseList</a>
+                    </div>
+                </li>
+
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" [routerLink]="['/role']" id="navbardrop" data-toggle="dropdown">
+                        <i class="fa fa-users icons"></i>
+                        Role
+                    </a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" [routerLink]="['/role']"> <i class="fa fa-users"></i> Role</a>
+                        <a class="dropdown-item" [routerLink]="['/rolelist']"><i class="fas fa-list"></i> RoleList</a>
+                    </div>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" [routerLink]="['/faculty']" id="navbardrop" data-toggle="dropdown">
+                        <i class="fas fa-male icons"></i>
+                        Faculty
+                    </a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" [routerLink]="['/faculty']"><i class="fas fa-male"></i> Faculty</a>
+                        <a class="dropdown-item" [routerLink]="['/facultylist']"><i class="fas fa-list"></i> FacultyList</a>
+                    </div>
+                </li>
+
+            </ng-template>
+
+            <ng-template [ngIf]="roleName == 'Admin' || roleName == 'Faculty' ">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" [routerLink]="['/marksheet']" id="navbardrop" data-toggle="dropdown">
+                        <i class="fas fa-chart-bar icons"></i>
+                        Marksheet
+                    </a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" [routerLink]="['/marksheet']"><i class="fas fa-chart-bar"></i> Marksheet</a>
+                        <a class="dropdown-item" [routerLink]="['/marksheetlist']"><i class="fas fa-list"></i> MarksheetList</a>
+                        <a class="dropdown-item" [routerLink]="['/meritlist']"><i class="fas fa-list"></i> MarksheetMeritList</a>
+                    </div>
+                </li>
+
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" [routerLink]="['/student']" id="navbardrop" data-toggle="dropdown">
+                        <i class="fas fa-id-badge icons"></i>
+                        Student
+                    </a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" [routerLink]="['/student']"><i class="fas fa-id-badge"></i> Student</a>
+                        <a class="dropdown-item" [routerLink]="['/studentlist']"><i class="fas fa-list"></i> StudentList</a>
+
+                    </div>
+                </li>
+
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" [routerLink]="['/subject']" id="navbardrop" data-toggle="dropdown">
+                        <i class="fas fa-folder-open icons"></i>
+                        Subject
+                    </a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" [routerLink]="['/subject']"><i class="fas fa-folder-open"></i> Subject</a>
+                        <a class="dropdown-item" [routerLink]="['/subjectlist']"><i class="fas fa-list"></i> SubjectList</a>
+
+                    </div>
+                </li>
+
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" [routerLink]="['/timetable']" id="navbardrop" data-toggle="dropdown">
+                        <i class="fas fa-table icons"></i>
+                        TimeTable
+                    </a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" [routerLink]="['/timetable']"><i class="fas fa-table"></i> TimeTable</a>
+                        <a class="dropdown-item" [routerLink]="['/timetablelist']"><i class="fas fa-list"></i> TimeTableList</a>
+                    </div>
+
+            </ng-template>
+
+            <ng-template [ngIf]="roleName == 'Student'">
+                <li class="nav-item ">
+                    <a class="nav-link" href="#">Marksheet <span class="sr-only"></span></a>
+                </li>
+
+                <li class="nav-item ">
+                    <a class="nav-link" href="#">Timetable<span class="sr-only"></span></a>
+                </li>
+
+                <li class="nav-item ">
+                    <a class="nav-link" href="#">Attendence<span class="sr-only"></span></a>
+                </li>
+            </ng-template>
+            </ul> 
+
+            <ul class="navbar-nav ml-auto" >
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" [routerLink]="['/changepassword']" id="navbarDropdrop" data-toggle="dropdown">
+                    <i class="fas fa-info-circle icons"></i>
+                        {{firstName}}-({{roleName}})
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" [routerLink]="['/myprofile']"><i class="fas fa-sign-out-alt"></i>MyProfile</a>
+                    <a class="dropdown-item" [routerLink]="['/changepassword']"><i class="fas fa-key"></i>ChangePassword</a>
+                    <a class="dropdown-item" [routerLink]="['/logout']"><i class="fas fa-user-circle"></i>Logout</a>
+                </div>
+            </li>
+            </ul>
+        </ng-template>
+    
+        
+        <ng-template [ngIf]="!isLogin()">
+            <ul class="navbar-nav ml-auto" >
+                <li class="nav-item dropdown" >
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" >
+                        <i class="fa fa-user icons"></i>  Hi Guest
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" [routerLink]="['/login']"><i
+                            class="fas fa-sign-in-alt"></i>Login</a>
+                    <a class="dropdown-item" [routerLink]="['/registration']"><i
+                            class="fas fa-user-plus"></i>Registration</a>
+                    </div>
+                </li>
+            </ul>
+        </ng-template>
+        
+    </div>
+</nav>
+

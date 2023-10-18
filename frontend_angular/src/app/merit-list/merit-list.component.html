@@ -1,0 +1,41 @@
+<body class="container-fluid">
+    <h1 style="text-align: center;padding:20px ;">Marksheet Merit List</h1>
+            <table width="100%">
+                
+                <div class="row">
+                    <div class="col-md-12">
+                        <table class="table table-bordered table-responsive-sm table-striped">
+                            <thead class="thead">
+                                <tr class="table-primary">
+                                    <th scope="col" style="text-align: center;">S.No</th>
+                                    <th scope="col" style="text-align: center;">ROLL NUMBER</th>
+                                    <th scope="col">NAME</th>
+                                    <th scope="col" style="text-align: center;">PHYSICS</th>
+                                    <th scope="col" style="text-align: center;">CHEMISTRY</th>
+                                    <th scope="col" style="text-align: center;">MATHS</th>
+                                    <th scope="col" style="text-align: center;">SCORED/TOTAL</th>
+                                    <th scope="col" style="text-align: center;">PERCENTAGE</th>
+                                </tr>
+                            </thead>
+                            
+                            <tbody>
+                                <tr *ngFor="let e of list; let i = index;">
+                                    
+                                    <td scope="row" style="text-align: center;" >{{ i + 1}}</td>
+                                    <td scope="row" style="text-align: center;">{{ e.rollNumber | titlecase }} </td>
+                                    <td scope="row">{{ e.name | titlecase }}</td>
+                                    <td scope="row" style="text-align: center;">{{ e.physics }}</td>
+                                    <td scope="row" style="text-align: center;">{{ e.chemistry }}</td>
+                                    <td scope="row" style="text-align: center;">{{ e.maths }}</td>
+                                    <td scope="row" style="text-align: center;">{{ e.total }} / 300</td>
+                                    <td scope="row" style="text-align: center;">{{ e.percentage | number:'.2-2'}}%</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </table>
+            <div style="padding-top: 40px;">  
+            <button [routerLink]="['/welcome']" class="btn btn-primary" style="display: block; margin: auto;">Back</button> 
+            </div>
+</body>

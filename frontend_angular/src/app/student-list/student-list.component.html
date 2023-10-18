@@ -1,0 +1,113 @@
+<body class="container-fluid">
+    <h1 style="text-align: center;padding-top:10px;">Student List</h1>
+    <form>
+        
+            <div class="input-name">
+                <input (focus)="fadeOutElement()" [(ngModel)]="form.firstName" class="name" name="firstName"  placeholder="Enter first name">
+                <span><button (click)="submit()" class="btn btn-primary">Search
+                <i class="fas fa-search"></i></button></span>
+            </div>
+
+            <div *ngIf="success; then SUCCESS_MSG else ERROR_MSG"></div>
+            <ng-template #SUCCESS_MSG>
+                <div [class.fade-out]="!isElementVisible">
+                    <h3 id="msg_format" style="color:rgb(11, 196, 11);">{{ message }}</h3>
+                </div>
+            </ng-template>
+
+            <ng-template #ERROR_MSG>
+                <div [class.fade-out]="!isElementVisible">
+                <h3 id="msg_format" style="color:red;text-align:center;">{{ message }}</h3>
+                </div>
+            </ng-template>
+
+            <table width="100%">
+                
+                <div class="row">
+                    <div class="col-md-12">
+                        <table class="table table-bordered table-responsive-sm table-striped">
+                            <thead class="thead">
+                                <tr class="table-primary">
+                                    <th scope="col" style="text-align: center;">S.No</th>
+                                    <th scope="col">FIRST NAME</th>
+                                    <th scope="col">LAST NAME</th>
+                                    <th scope="col">EMAIL ID</th>
+                                    <th scope="col" style="text-align: center;">DOB</th>
+                                    <th scope="col" style="text-align: center;">MOBILE NUMBER</th>
+                                    <th scope="col" >COLLEGE NAME</th>
+                                    <th scope="col" style="text-align: center;">EDIT</th>
+                                    <th scope="col" style="text-align: center;">DELETE</th>
+                                </tr>
+                            </thead>
+                            
+                            <tbody>
+                                <tr *ngFor="let e of list; let i = index;">
+                                    
+                                    <td scope="row" style="text-align: center;" >{{ form.index + i}}</td>
+                                    <td scope="row">{{ e.firstName | titlecase }} </td>
+                                    <td scope="row">{{ e.lastName | titlecase }}</td>
+                                    <td scope="row">{{ e.email | lowercase }}</td>
+                                    <td scope="row" style="text-align: center;">{{ e.dob | date:'dd/MM/YYYY' }}</td>
+                                    <td scope="row" style="text-align: center;">{{ e.mobileNumber }}</td>
+                                    <td scope="row">{{ e.collegeName }}</td>
+
+                                    <td style="text-align: center;"><button (click)="edit(e.id)" style="color:blue">Edit <i
+                                        class="fa fa-edit"></i></button></td>
+
+                                    <td style="text-align: center;"><button (click)="delete(e.id)">Delete<i class="fa fa-trash"
+                                            style="color:red"></i></button></td>
+                                    
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </table>
+                <br>
+                <div *ngIf="form.mesg == '';then ENABLE_PAGE else DISABLE_PAGE;"></div>
+
+                <ng-template #ENABLE_PAGE>
+                    <div class="row" >
+
+                        <div class="col-lg-2"></div>
+                        
+                        <div *ngIf="form.pageNo == 1; then PVS_BTN_DISABLE else PVS_BTN_ENABLE"></div>
+                        
+                        <div class="col-lg-1">
+                            <ng-template #PVS_BTN_DISABLE>
+                                <button disabled class="btn btn-dark float-left" >Previous</button>
+                            </ng-template>
+                            <ng-template #PVS_BTN_ENABLE>
+                                <button (click)="previous()" type="submit" class="btn btn-primary">Previous</button>
+                            </ng-template>
+                        </div>
+
+                        <div class="col-lg-2"></div>
+
+                        <div class="col-lg-1">
+                            <a [routerLink]="['/student']" class="btn btn-success">Add<i 
+                                class="fas fa-plus-circle"></i></a>
+                        </div>
+
+                        <div class="col-lg-3"></div>
+
+                        <div *ngIf="list.length < 5 || form.LastId == form.MaxId; then NXT_BTN_DISABLE else NXT_BTN_ENABLE"></div>
+
+                        <div class="col-lg-1">
+                            <ng-template #NXT_BTN_DISABLE>
+                                <button disabled class="btn btn-dark">Next</button>
+                            </ng-template>
+                            <ng-template #NXT_BTN_ENABLE>
+                                <button (click)="next()" class="btn btn-primary">Next</button>
+                            </ng-template>
+                        </div>  
+                    </div>
+                </ng-template>
+
+                <ng-template #DISABLE_PAGE>
+                    <h2 style="color: red;font-size:30px;font-family:serif; margin:50px 0px 0px 750px;">{{form.mesg}}</h2><br><br>
+                    <button style="display: block; margin: auto;" (click)="reload()" class="btn btn-danger btn-lg">BACK</button>  
+                </ng-template>
+            
+    </form>
+</body>

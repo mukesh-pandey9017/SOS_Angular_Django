@@ -1,0 +1,93 @@
+<body>
+    <div class="container">
+        <h2>Marksheet</h2>
+        <div class="form-container">
+            
+            <div *ngIf="success; then SUCCESS_MSG else ERROR_MSG" ></div>
+            <ng-template #SUCCESS_MSG >
+                <div [class.fade-out]="!isElementVisible">
+                    <h3 id="msg_format" style="color:rgb(29, 223, 29);">{{ message }}</h3>
+                </div>
+            </ng-template>
+            <ng-template #ERROR_MSG>
+                <div [class.fade-out]="!isElementVisible">
+                    <h3 id="msg_format" style="color:red">{{ message }}</h3>
+                </div>
+            </ng-template>
+            
+            <form>
+                
+                <div class="input-name">
+                    <label style="margin-right: 2px;">Roll No.<span style="color: red;margin-left:5px">*</span></label>
+                    <span style="margin-right: 20px;">
+                        <i class="fa fa-id-card icon"></i>
+                        <input [(ngModel)]="form.rollNumber" type="text" placeholder="Enter Roll No" name="rollNumber" class="name" style="width: 60%;">
+                    </span>
+                </div>
+
+                <div class="input-name">
+                    <span style="color: red;margin-left:106px">{{ inputError.rollNumber }}</span>
+                </div>
+
+                <div class="input-name">
+                    <label style="margin-right: 14px;">Name<span style="color: red;margin-left:5px">*</span></label>
+                    <span style="margin-right: 20px;">
+                        <i class="fa fa-user icon"></i>
+                        <input [(ngModel)]="form.name" type="text" placeholder="Enter Your Name" name="name" class="name" style="width: 60%;">
+                    </span>
+                </div>
+
+                <div class="input-name">
+                    <span style="color: red;margin-left:106px">{{ inputError.name }}</span>
+                </div>
+
+                <div class="input-name">
+                    <label style="margin-right: 5px;">Physics<span style="color: red;margin-left:5px">*</span></label>
+                    <span style="margin-right: 20px;">
+                        <i class="fas fa-equals icon"></i>
+                        <input [(ngModel)]="form.physics" type="text" placeholder="Enter Your Physics Marks" name="physics" value="{{form.physics}}" class="name" style="width: 60%;">
+                    </span>
+                </div>
+
+                <div class="input-name">
+                    <span style="color: red;margin-left:106px">{{ inputError.physics }}</span>
+                </div>
+
+                <div class="input-name">
+                    <label style="margin-right: -11px;">Chemistry<span style="color: red;margin-left:5px">*</span></label>
+                    <span style="margin-right: 20px;">
+                        <i class="fas fa-equals icon"></i>
+                    <input [(ngModel)]="form.chemistry" type="text" placeholder="Enter Your Chemistry Marks" name="chemistry" value="{{form.chemistry}}" class="name" style="width: 60%;">
+                    </span>
+                </div>
+
+                <div class="input-name">
+                    <span style="color: red;margin-left:106px">{{ inputError.chemistry }}</span>
+                </div>
+
+                <div class="input-name">
+                    <label style="margin-right: 10px;">Maths<span style="color: red;margin-left:5px">*</span></label>
+                    <span style="text-align:right">
+                        <i class="fas fa-equals icon"></i>
+                    <input [(ngModel)]="form.maths" type="text" placeholder="Enter Your Maths Marks" name="maths" value="{{form.maths}}" class="name" style="width: 60%;">
+                    </span>
+                </div>
+
+                <div class="input-name">
+                    <span style="color: red;margin-left:106px">{{ inputError.maths }}</span>
+                </div>
+
+                <div class="input-button">
+                    <div class="row">
+                        <button (click)="save()" class="button" style="margin-left:127px ;">Save</button>
+                        <button (click)="reset()" class="button">Reset</button>
+                    </div>
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</body>
