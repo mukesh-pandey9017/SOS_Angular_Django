@@ -1,8 +1,7 @@
 <nav  class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
-    <div *ngIf="roleName =='';then loginlink else welcomelink"></div>
-    <ng-template #loginlink><a class="navbar-brand" href="/login">
+    <ng-template [ngIf]="!isLogin()"><a class="navbar-brand" href="/login">
         <img src="assets/img.png" width="120" alt="no image" height="40"></a></ng-template>
-    <ng-template #welcomelink><a class="navbar-brand" href="/welcome">
+    <ng-template [ngIf]="isLogin()"><a class="navbar-brand" href="/welcome">
         <img src="assets/img.png" width="120" alt="no image" height="40"></a></ng-template>
 
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -10,7 +9,7 @@
     </button>
   
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      
+    
         <ng-template [ngIf]="isLogin()">
             <ul class="navbar-nav mr-auto">
 
@@ -174,6 +173,22 @@
             </ul>
         </ng-template>
         
+        <ng-template [ngIf]="!isLogin()">
+            <div  style="text-align:center;">
+                <p style="position: fixed;bottom:-20px;width:100%;background-color:rgb(27, 27, 27);color:rgb(241, 235, 235);padding:10px 10px">
+                    <b>Copyright &copy; Rays Technologies</b> <b >Since-2006</b>
+                </p>
+            </div>
+        </ng-template>
+        
+        <ng-template [ngIf]="isLogin()">
+        <div style="text-align:center;">
+            <p style="position: fixed;bottom:-20px;width:100%;background-color: transparent;padding:10px 10px;color:black;border-top:3px solid transparent">
+                <b>Copyright &copy; Rays Technologies</b> <b >Since-2006</b>
+            </p>
+        </div>
+        </ng-template>
+
     </div>
 </nav>
 

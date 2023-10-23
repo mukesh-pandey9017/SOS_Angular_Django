@@ -12,6 +12,7 @@ export class MenuComponent implements OnInit{
   msg = '';
   firstName:any = '';
   roleName:any = '';
+
   constructor(private router:Router, private location:Location ){
     console.log("in menu component const");
   }
@@ -25,6 +26,9 @@ export class MenuComponent implements OnInit{
   isSessionOut(){
     let loginId = localStorage.getItem('loginId');
     console.log("isSessionout method-->login-->", loginId)
+    console.log("this.location.path()", this.location.path())
+    console.log("this.router.url", this.router.url)
+
     if ((loginId == "null" || loginId == null) &&
         (this.location.path() != "" &&
         this.location.path() != "/login" &&

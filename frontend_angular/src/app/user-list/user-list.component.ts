@@ -52,7 +52,7 @@ export class UserListComponent {
   delete(id:number){
     var _self = this;
     this.service.delete(id, function(res:any, error:any){
-      if(res.data.error){
+      if(error){
         alert("User delete method Error: " + error.message);
         return;
       }else{
@@ -81,7 +81,10 @@ export class UserListComponent {
     console.log("search in list form---->>",this.form);
     this.service.search(this.form, function(res:any, error:any){
       if (error){
-        alert("User search method Error :----->> " + error.message);
+        _self.success = false;
+        console.log("User search method error ------>"+ error.message)
+        _self.message = "Can't connect to server ...!!!, Please try after some time";
+        alert("Can't connect to server ...!!!, Please try after some time");
         return;
       }
       _self.form.index = res.result.index;

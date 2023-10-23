@@ -33,6 +33,7 @@ import { TimetableComponent } from './timetable/timetable.component';
 import { MeritListComponent } from './merit-list/merit-list.component';
 import { DocumentComponent } from './document/document.component';
 import { MyProfileComponent } from './my-profile/my-profile.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -63,7 +64,8 @@ import { MyProfileComponent } from './my-profile/my-profile.component';
     TimetableComponent,
     MeritListComponent,
     DocumentComponent,
-    MyProfileComponent
+    MyProfileComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

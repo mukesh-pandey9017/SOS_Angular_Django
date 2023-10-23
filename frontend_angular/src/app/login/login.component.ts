@@ -16,15 +16,14 @@ export class LoginComponent {
   fadeOutElement() {
     
     this.isElementVisible = false;
-    console.log("callind fadeout function")
+    console.log("calling fadeout function")
   }
   
   success=true
 
   sess_msg:any;
-
+  
   form:any={
-    
     "login_id":'',
     "password":'',
     "message":'',
@@ -67,9 +66,16 @@ export class LoginComponent {
     var _self = this
     console.log("signIn-->");
     
-    this.service.auth(this.form, function(info:any){
+    this.service.auth(this.form, function(info:any,error:any){
       console.log("info---->>",info)
-      if (info.form.error){
+      if (error){
+        _self.success = false;
+        console.log("Login")
+        _self.form.message = "Can't connect to server....!!!, please try after some time";
+        alert("Sever Connection Error")
+        _self.isElementVisible = true;
+      }
+      else if (info.form.error){
         _self.success = false;
         _self.form.message = info.form.message;
         _self.inputError = info.form.inputError;
@@ -84,13 +90,11 @@ export class LoginComponent {
         _self.router.navigateByUrl("/welcome");
       }
     })
-
-    this.fadeOutElement()
-    
+    this.fadeOutElement();
   }
 
   onclick(){
-    this.router.navigateByUrl("/registration")
+    this.router.navigateByUrl("/registration");
   }
 
 }

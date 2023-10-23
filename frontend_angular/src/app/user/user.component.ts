@@ -61,8 +61,9 @@ export class UserComponent {
     if(!isNaN(this.form.id) && this.form.id>0){
       this.service.get(this.form.id,function(res:any,error:any){
         if(error){
-        alert("User get method Error ngOnInit:----->> " + error.message)
         console.log("User Get method Error ngOnInit:----->> ",error.message)
+        _self.success = false;
+        _self.message = "Can't connect to server....!!!, please try after some time";
         return;}
         
         console.log("User get method data =", res)
@@ -79,15 +80,22 @@ export class UserComponent {
 
   save(){
     var _self = this;
-    this.ngOnInit();
+    // this.ngOnInit();
+    this.form.id = Number(this.aroute.snapshot.paramMap.get("id") || "{}");
 
     if (isNaN(this.form.id)){
       this.form.id = 0;
     }
     
-    this.service.save(this.form, function(res:any, erorr:any){
+    this.service.save(this.form, function(res:any, error:any){
       console.log("user Save--->>", res.data);
       console.log("user form--->>",_self.form);
+      if(error){
+        console.log("User save method Error",error.message)
+        _self.success = false;
+        _self.message = "Can't connect to server....!!!, please try after some time";
+        _self.isElementVisible = true;
+        return;}
       if(res.data.error){
         _self.success = false;
         _self.message = res.data.message;
@@ -114,7 +122,6 @@ export class UserComponent {
           "role_Id" : "",
           "role_Name" : ""
         }
-
       }
       else{
         _self.message = "Data was not Saved";
@@ -133,7 +140,8 @@ export class UserComponent {
     var _self = this;
     this.service.preload(function(res:any, error:any){
       if(error){
-        alert("Preload Error:----->>" + error.message);
+        alert("Server Connection Error")
+        console.log("Preload Error:----->>" + error.message);
         return;
       }
       _self.preloadData = res.preloadList;
@@ -172,6 +180,4 @@ export class UserComponent {
     }
     this.message = "";
   }
-
 }
-

@@ -102,7 +102,6 @@ class UserCtl(BaseCtl):
         res = {}
         if (userObject != None):
             self.get_service().delete(params["id"])
-            res["data"] = userObject.to_json()
             res["error"] = False
             res["message"] = "Data has been deleted successfully"
         else:
