@@ -38,7 +38,7 @@ export class UserListComponent {
   constructor(private router:Router, private service:UserService){}
 
   ngOnInit():void{
-    console.log("Search in list form2---->>",this.form);
+    console.log("Inside ngOnInit() of user-list component",this.form);
     this.search();
     console.log("This.Search()---->>")
   }
