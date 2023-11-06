@@ -8,7 +8,7 @@ import { AuthService } from '../services/auth.service';
   styleUrls: ['./login.component.css'],
 
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit{
 
   //Variable and Function for fadding out erorr/success messages
   isElementVisible = true;
@@ -41,7 +41,7 @@ export class LoginComponent {
   
   ngOnInit(): void {
 
-    console.log('"in login ts inside ng on init ---->>>>>>>>>>>>>>"')
+    console.log('"inside ngOnInit() of menu component ---->>>>>>>>>>>>>>"')
     localStorage.removeItem("loginId")
     console.log("this.router.url---->>",this.router.url)
     if(this.router.url == '/sessionOut'){

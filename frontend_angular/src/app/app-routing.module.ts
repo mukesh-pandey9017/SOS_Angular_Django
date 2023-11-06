@@ -41,7 +41,6 @@ const routes: Routes = [
   { path : 'sessionOut' , component:LoginComponent},
   { path : 'changepassword' , component:ChangepasswordComponent},
   { path : 'forgetpassword' , component:ForgetpasswordComponent},
-  { path : 'forgetpassword' , component:ForgetpasswordComponent},
   { path : 'role', component:RoleComponent},
   { path : 'role/:id' , component:RoleComponent},
   { path : 'rolelist' , component:RoleListComponent},

@@ -24,15 +24,15 @@ export class AuthService {
     console.log("compCB---->>",compCB);
     console.log("in auth service auth method");
     let url = this.endpoint + 'auth';
-    this.http.post(url,form).subscribe({
-      next:(data) => {
+    this.http.post(url,form).subscribe(
+      function success(data) {
         console.log(" Success auth data---->>1",data)
         compCB(data)
       },
-      error:(data) =>{
+      function fail(data){
         console.log("error auth data---->>2",data)
         compCB(data, true)}
-      });
+      );
 
     }
 

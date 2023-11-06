@@ -18,7 +18,7 @@ export class MenuComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    console.log("in ng on init menu-->");
+    console.log("inside ngOnInit of menu component ---->");
     this.isSessionOut();
     this.isLogout();
   }

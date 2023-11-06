@@ -71,6 +71,14 @@ export class RegistrationComponent {
     var _self = this;
     this.service.save(this.form,function(res:any, error:any){
       console.log("service.save-res---->>",res)
+      if(error){
+        _self.success = false;
+        _self.isElementVisible=true;
+        console.log("Registration save method error ------>")
+        _self.message = "Can't connect to server ...!!!, Please try after some time";
+        alert("Server connection error");
+        return;
+      }
       if (res.data.error){
         console.log("res.data.error----->>",res.data.error)
         _self.success = false;

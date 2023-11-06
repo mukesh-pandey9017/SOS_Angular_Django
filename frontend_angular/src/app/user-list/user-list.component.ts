@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from '../services/user.service';
 
@@ -7,7 +7,7 @@ import { UserService } from '../services/user.service';
   templateUrl: './user-list.component.html',
   styleUrls: ['./user-list.component.css']
 })
-export class UserListComponent {
+export class UserListComponent implements OnInit{
 
   //Variable and Function for fadding out erorr/success messages
   isElementVisible = true;
@@ -53,7 +53,11 @@ export class UserListComponent {
     var _self = this;
     this.service.delete(id, function(res:any, error:any){
       if(error){
-        alert("User delete method Error: " + error.message);
+        _self.success = false;
+        _self.isElementVisible=true;
+        console.log("User delete method error ------>")
+        _self.message = "Can't connect to server ...!!!, Please try after some time";
+        alert("Can't connect to server ...!!!, Please try after some time");
         return;
       }else{
         _self.success = true;
@@ -82,6 +86,7 @@ export class UserListComponent {
     this.service.search(this.form, function(res:any, error:any){
       if (error){
         _self.success = false;
+        _self.isElementVisible=true;
         console.log("User search method error ------>"+ error.message)
         _self.message = "Can't connect to server ...!!!, Please try after some time";
         alert("Can't connect to server ...!!!, Please try after some time");
@@ -94,6 +99,7 @@ export class UserListComponent {
       _self.list = res.result.data;
   
       console.log("User Search method list---->>", _self.list)
+
     });
   }
 
