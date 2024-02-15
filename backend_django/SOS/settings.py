@@ -87,17 +87,38 @@ SESSION_SERIALIZER = "django.contrib.sessions.serializers.PickleSerializer"
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+# DATABASES = {
+#     "default": {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'sos_db',
+#         'PASSWORD': 'root',
+#         'USER': 'root',
+#         'HOST': 'localhost',
+#         'PORT': '3306',
+#     }
+# }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',  # Use the MySQL database engine
+#         'NAME': 'mydb',                      # Name of your database (defined in docker-compose.yml)
+#         'USER': 'myuser',                      # MySQL user (defined in docker-compose.yml)
+#         'PASSWORD': 'mypassword',      # MySQL password (defined in docker-compose.yml)
+#         'HOST': 'mysqlDB',                  # Hostname of the MySQL container (service name in docker-compose.yml)
+#         'PORT': '3306',                      # MySQL port (defined in docker-compose.yml)
+#     }
+# }
+
 DATABASES = {
-    "default": {
+    'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'sos_db',
-        'PASSWORD': 'root',
-        'USER': 'root',
-        'HOST': 'localhost',
-        'PORT': '3306',
+        'HOST': os.environ.get('DJANGO_DB_HOST', 'localhost'),
+        'PORT': os.environ.get('DJANGO_DB_PORT', '3306'),
+        'NAME': os.environ.get('DJANGO_DB_NAME', 'sos_db'),
+        'USER': os.environ.get('DJANGO_DB_USER', 'root'),
+        'PASSWORD': os.environ.get('DJANGO_DB_PASSWORD', 'root'),
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -148,4 +169,3 @@ EMAIL_USE_TLS = True
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'mukesh.mechanical17@gmail.com'
 EMAIL_HOST_PASSWORD = 'tijhflixjbqnqqdk'
-
