@@ -1,7 +1,7 @@
 # Use the official Node.js image as the base image
 FROM node:18 as build
 
-# Set the working directory
+# Set the working directory..
 WORKDIR /app
 
 # Copy package.json and package-lock.json to install dependencies
@@ -23,7 +23,7 @@ RUN ng build
 FROM nginx:alpine
 
 # Copy the built Angular app from the build stage to the Nginx web root
-COPY dist/frontend_angular /usr/share/nginx/html
+COPY ./dist/frontend_angular /usr/share/nginx/html
 
 # Expose port 80 for Nginx
 EXPOSE 80
