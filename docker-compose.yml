@@ -7,7 +7,7 @@ services:
     ports:
       - "80:80"
     volumes:
-      - ./site-content:/usr/share/nginx/html
+      - ./frontend_angular/dist/frontend_angular:/usr/share/nginx/html
 
   django-app:
     build:
