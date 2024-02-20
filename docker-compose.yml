@@ -27,7 +27,9 @@ services:
       - DJANGO_DB_USER=myuser
       - DJANGO_DB_PASSWORD=mypassword
     
-    command: ./docker-entrypoint.sh
+    entrypoint: sh -c "cd /app && python manage.py makemigrations && python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
+    # command: ./docker-entrypoint.sh
+  
   
   mysqlDB:
     image: mysql:8.1
