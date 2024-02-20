@@ -6,6 +6,8 @@ services:
       dockerfile: Dockerfile
     ports:
       - "80:80"
+    volumes:
+      -./site-content:/usr/share/nginx/html
 
   django-app:
     build:
