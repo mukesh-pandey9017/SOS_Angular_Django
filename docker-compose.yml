@@ -27,8 +27,7 @@ services:
       - DJANGO_DB_USER=myuser
       - DJANGO_DB_PASSWORD=mypassword
     
-    # command: "pwd"
-    command: /app/docker-entrypoint.sh
+    command: ./docker-entrypoint.sh
   
   mysqlDB:
     image: mysql:8.1
